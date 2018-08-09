@@ -3,12 +3,12 @@
 namespace TheSmallGame.Models
 {
     /// <summary>
-    /// Stores results of successfully finished games.
+    /// Result of a successfully finished game.
     /// </summary>
     public class ScoreModel
     {
-        public string UserName { get; set; }
+        public string PlayerName { get; set; }
         public DateTime DateFinished { get; set; }
-        public TimeSpan TimeToWin { get; set; }
+        public double SecondsToWin { get; set; }
     }
 }

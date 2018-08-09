@@ -1,8 +1,7 @@
-﻿<%@ Page ViewStateEncryptionMode="Always" Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page ViewStateEncryptionMode="Always" EnableViewState="true" Title="Play" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Label ID="UserName" runat="server" Text="Label"></asp:Label>
-    <div class="row">
+    <div class="row" runat="server" id="NotLoggedView">
         <div class="col-md-7">
             <h2>Log in to play The Small Game</h2>
             <p>
@@ -14,6 +13,14 @@
             <p>
                 <a class="btn btn-default" runat="server" href="~/Account/Register">Register &raquo;</a>
             </p>
+        </div>
+    </div>
+    <div runat="server" id="LoggedView">
+        <div class="jumbotron text-center" runat="server" id="GameNotStarted">
+            <asp:Button ID="ButtonStartGame" runat="server" Text="Start The Game!" OnClick="ButtonStartGame_Click"  />
+        </div>
+        <div runat="server" id="GameStarted">
+            Game started!
         </div>
     </div>
 </asp:Content>
