@@ -1,23 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using TheSmallGame.DataSources;
 using TheSmallGame.Models;
 
 public class GameEngine
 {
-    private QuestionsService _questionsService;
-    public GameEngine(QuestionsService questionsService)
+    private QuestionsStore _questionsStore;
+    private HighScoresStore _highScoresStore;
+
+    public GameEngine(QuestionsStore questionsStore, HighScoresStore highScoresStore)
     {
-        _questionsService = questionsService;
+        _questionsStore = questionsStore;
+        _highScoresStore = highScoresStore;
     }
 
     public GameStateModel NewGame(string playerName)
     {
         return new GameStateModel
         {
-            Questions = _questionsService.GetRandomQuestions(5).ToList(),
+            Questions = _questionsStore.GetRandomQuestions(5).ToList(),
             PlayerName = playerName,
             StartTime = DateTime.Now
         };
@@ -33,6 +34,7 @@ public class GameEngine
             {
                 game.IsFinished = true;
                 game.IsWon = true;
+                SaveHighScore(game);
             }
         }
         else
@@ -42,5 +44,16 @@ public class GameEngine
             game.IsWon = false;
         }
         return game;
+    }
+
+    private void SaveHighScore(GameStateModel game)
+    {
+        var highScore = new HighScoreModel
+        {
+            DateFinished = DateTime.Now,
+            PlayerName = game.PlayerName,
+            SecondsToWin = game.RunningTime.TotalSeconds
+        };
+        _highScoresStore.SaveHighScore(highScore);
     }
 }

@@ -5,7 +5,7 @@ namespace TheSmallGame.Models
     /// <summary>
     /// Result of a successfully finished game.
     /// </summary>
-    public class ScoreModel
+    public class HighScoreModel
     {
         public string PlayerName { get; set; }
         public DateTime DateFinished { get; set; }

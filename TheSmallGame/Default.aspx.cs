@@ -88,9 +88,8 @@ public partial class _Default : Page
 
     private GameEngine GetGameEngine()
     {
-        QuestionsStore questionsStore = new QuestionsStore();
-        QuestionsService questionsService = new QuestionsService(questionsStore);
-        return new GameEngine(questionsService);
+        //TODO: how about using some DI mechanism
+        return new GameEngine(new QuestionsStore(), new HighScoresStore(Application));
     }
 
     private GameStateModel GetCurrentGame()
