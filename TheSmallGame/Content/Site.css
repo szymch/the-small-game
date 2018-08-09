@@ -27,3 +27,8 @@ textarea {
         padding: 0;
     }
 }
+
+/* vertical margin */
+.mv2 {
+    margin: 2em 0;
+}

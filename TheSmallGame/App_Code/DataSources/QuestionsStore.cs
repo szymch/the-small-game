@@ -33,7 +33,7 @@ namespace TheSmallGame.DataSources
                 new QuestionModel
                 {
                     Id = "4",
-                    QuestionText = "Aconcagua is Andas highest peak.",
+                    QuestionText = "Aconcagua is the highest peak in the Andes.",
                     Answer = true
                 },
                 new QuestionModel

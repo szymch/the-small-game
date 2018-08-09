@@ -17,11 +17,11 @@ namespace TheSmallGame.DataSources
         /// <summary>
         /// Provides a collection of unique, random questions
         /// </summary>
-        public IEnumerable<QuestionModel> GetRandomQuestions(int limit)
+        public List<QuestionModel> GetRandomQuestions(int limit)
         {
             // I assume number of questions is not going to be a challenge.
             // If it was, I would look into more optimal way to shuffle.
-            return _questionsStore.GetQuestions().OrderBy(q => Guid.NewGuid()).Take(limit);
+            return _questionsStore.GetQuestions().OrderBy(q => Guid.NewGuid()).Take(limit).ToList();
         }
     }
 }

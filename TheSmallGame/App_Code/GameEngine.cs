@@ -22,4 +22,25 @@ public class GameEngine
             StartTime = DateTime.Now
         };
     }
+
+    public GameStateModel AnswerFirstQuestion(GameStateModel game, bool answer)
+    {
+        if (game.Questions.First().Answer == answer)
+        {
+            game.Questions.RemoveAt(0);
+            game.RunningTime = DateTime.Now.Subtract(game.StartTime);
+            if (game.Questions.Count() == 0)
+            {
+                game.IsFinished = true;
+                game.IsWon = true;
+            }
+        }
+        else
+        {
+            game.Questions.Clear();
+            game.IsFinished = true;
+            game.IsWon = false;
+        }
+        return game;
+    }
 }
